@@ -2,8 +2,7 @@
 package-lock.json
 .idea/
 *.local.*
-
-./src/views/Dashboard
+/.vscode
 
 # dependencies
 /node_modules
