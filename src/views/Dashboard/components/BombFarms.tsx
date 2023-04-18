@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import useStakedBalance from '../../../hooks/useStakedBalance';
 import useBombFinance from '../../../hooks/useBombFinance';
 
+
+
 interface BombFarmsProps {
     bsharePrice: string;
 }
@@ -74,63 +76,35 @@ const BombFarms: React.FC<BombFarmsProps> = ({ bsharePrice }) => {
 
 
     return (
-        <div style={{ marginTop: '75px' }}>
+        <ComponentWrapper >
             <Card>
                 <CardContent >
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            width: "100%",
-                            alignItems: "center",
-                        }}
+                    <BombFarmsHeadingWrapper
                     >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "flex-start",
-                                alignItems: "flex-start",
-                                gap: "15px",
-                            }}
+                        <BombFarmsHeading
                         >
-                            <h3 style={{ fontSize: "22px", lineHeight: "30px", fontWeight: 700 }}>
+                            <HeadingH3 >
                                 Bomb Farms
-                            </h3>
-                            <span
+                            </HeadingH3>
+                            <Span
                             >
                                 Stake your LP tokens in our farms to start earning BSHARE
-                            </span>
-                        </div>
-                        <button
-                            style={{
-                                padding: "5px",
-                                letterSpacing: '0.7px',
-                                border: "1px solid #fff",
-                                background: 'transparent',
-                                color: '#fff',
-                                paddingLeft: "15px",
-                                paddingRight: "15px",
-                                fontSize: "15px",
-                                borderRadius: "20px",
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                gap: '5px'
-                            }}
+                            </Span>
+                        </BombFarmsHeading>
+                        <ClaimButton
+
                             onClick={() => { setClaimModalOpen(true); }}
                         >
-                            <span style={{ fontSize: "15px", lineHeight: "20px" }}>
+                            <ClaimAllSpan >
                                 Claim All
-                            </span>
-                            <img
+                            </ClaimAllSpan>
+                            <Image
                                 src="https://www.gitbook.com/cdn-cgi/image/width=40,dpr=2,height=40,fit=contain,format=auto/https%3A%2F%2F2079639823-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Ffir9H9ck6r6eH3VEWFGa%252Ficon%252FbRCpgHPwDxe21uW2HTAz%252Fbomb-200x200.png%3Falt%3Dmedia%26token%3D03c750fa-e3bb-4d84-b1c6-2008f8c0d932"
                                 alt="@@"
                                 width="16"
                                 height="16"
                             />
-                        </button>
+                        </ClaimButton>
                         {claimModalOpen == true && (
                             <ModalWrapper id="modalWrapper">
                                 <ModalContent>
@@ -138,7 +112,7 @@ const BombFarms: React.FC<BombFarmsProps> = ({ bsharePrice }) => {
                                     <ModalCkeckBoxList id='modalCheckBoxWrapper'>
                                         {
                                             data.filter(el => el.stakedBalance.toNumber() > 0).length === 0 ? (
-                                                <div>"You don't hold any tokens."</div>
+                                                <Div>"You don't hold any tokens."</Div>
                                             ) : (
                                                 data.map((el, i) => (
                                                     <ModalInputCheckBoxWrapper key={i}>
@@ -181,7 +155,7 @@ const BombFarms: React.FC<BombFarmsProps> = ({ bsharePrice }) => {
                             </ModalWrapper>
                         )
                         }
-                    </div>
+                    </BombFarmsHeadingWrapper>
                     {
                         data.map((el, i) => (
                             <>
@@ -192,11 +166,43 @@ const BombFarms: React.FC<BombFarmsProps> = ({ bsharePrice }) => {
                     }
                 </CardContent>
             </Card>
-        </div>
+        </ComponentWrapper>
     )
 }
 
 export default BombFarms;
+
+export const BombFarmsHeadingWrapper = styled.div`
+    display: "flex";
+    justifyContent: "space-between";
+    width: "100%";
+    alignItems: "center";
+`
+
+export const BombFarmsHeading = styled.div`
+    display: "flex";
+    flexDirection: "column";
+    justifyContent: "flex-start";
+    alignItems: "flex-start";
+    gap: "15px";
+`
+
+export const ClaimButton = styled.button`
+    padding: "5px";
+    letterSpacing: '0.7px';
+    border: "1px solid #fff";
+    background: 'transparent';
+    color: '#fff';
+    paddingLeft: "15px";
+    paddingRight: "15px";
+    fontSize: "15px";
+    borderRadius: "20px";
+    display: 'flex';
+    alignItems: 'center';
+    justifyContent: 'center';
+    cursor: 'pointer';
+    gap: '5px';
+`
 
 export const ModalCheckboxLabel = styled.label`
     font-size: 16px;
@@ -231,7 +237,6 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   z-index: 9999; /* Adjust the z-index as needed */
 `;
-
 
 export const ModalContent = styled.div`
   background-color: #33373d;
@@ -278,6 +283,7 @@ export const ModalButton = styled.button`
   color: #fff;
   cursor: pointer;
 `;
+
 export const ModalButtonCancel = styled.button`
   margin-left: 10px;
   padding: 10px 20px;
@@ -288,3 +294,26 @@ export const ModalButtonCancel = styled.button`
   color: #fff;
   cursor: pointer;
 `;
+
+export const ComponentWrapper = styled.div`
+  margin-top: 75px;
+`;
+
+const Image = styled.img``;
+
+
+export const HeadingH3 = styled.h3`
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+`;
+
+const Span = styled.span``;
+
+
+const ClaimAllSpan = styled.span`
+  font-size: 15px;
+  line-height: 20px;
+`;
+
+const Div = styled.div``;
