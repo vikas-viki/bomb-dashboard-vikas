@@ -27,6 +27,7 @@
     "@types/react": "^16.9.46",
     "@types/react-helmet": "^6.1.5",
     "@types/react-redux": "^7.1.9",
+    "assert": "^2.0.0",
     "bignumber.js": "^9.0.0",
     "clsx": "^1.1.1",
     "ethers": "^5.4.1",
